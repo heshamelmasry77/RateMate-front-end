@@ -1,6 +1,7 @@
+
 # RateMate Front-End
 
-**RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, and **ESLint**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
+**RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, and **Redux Toolkit**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
 
 Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 
@@ -11,6 +12,8 @@ Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 - **Tailwind CSS** for utility-first styling.
 - **Prettier** for code formatting.
 - **ESLint** for enforcing coding standards.
+- **Husky** for Git hooks.
+- **Redux Toolkit** for state management.
 - Deployed on **Vercel**.
 
 ## Project Structure
@@ -27,6 +30,7 @@ RateMate-front-end/
 │   ├── App.css          # Application-specific styles
 │   ├── App.jsx          # Root React component
 │   ├── index.css        # Global CSS styles
+│   ├── store/           # Redux store configuration
 │   └── main.jsx         # Main entry point for the React app
 ├── .gitignore           # Files and folders to ignore in git
 ├── .prettierignore      # Files to ignore for Prettier
@@ -89,6 +93,14 @@ npm run format
 ```
 
 This will automatically format your code according to the configured rules.
+
+## Husky
+
+Husky is used to manage Git hooks, ensuring that linting and formatting rules are followed before committing changes.
+
+## Redux Toolkit
+
+Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
 
 ## Deployment
 
