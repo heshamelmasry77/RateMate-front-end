@@ -1,7 +1,7 @@
 
 # RateMate Front-End
 
-**RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, and **Redux Toolkit**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
+**RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
 
 Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 
@@ -14,6 +14,7 @@ Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 - **ESLint** for enforcing coding standards.
 - **Husky** for Git hooks.
 - **Redux Toolkit** for state management.
+- **React Router** for client-side routing.
 - Deployed on **Vercel**.
 
 ## Project Structure
@@ -31,6 +32,13 @@ RateMate-front-end/
 │   ├── App.jsx          # Root React component
 │   ├── index.css        # Global CSS styles
 │   ├── store/           # Redux store configuration
+│   ├── components/      # Reusable components
+│   │   └── Navbar.jsx   # Navigation component
+│   ├── pages/           # Page components for routes
+│   │   ├── HomePage.jsx
+│   │   ├── SignIn.jsx
+│   │   ├── Register.jsx
+│   │   └── CheckCurrencyHistory.jsx
 │   └── main.jsx         # Main entry point for the React app
 ├── .gitignore           # Files and folders to ignore in git
 ├── .prettierignore      # Files to ignore for Prettier
@@ -43,6 +51,15 @@ RateMate-front-end/
 ├── tailwind.config.js   # Tailwind CSS configuration
 └── vite.config.js       # Vite configuration
 ```
+
+## Routes
+
+The app uses **React Router** to handle client-side routing. The available routes include:
+
+- **Home Page**: `/`
+- **Sign In**: `/signin`
+- **Register**: `/register`
+- **Check Currency History**: `/history`
 
 ## Getting Started
 
@@ -101,6 +118,14 @@ Husky is used to manage Git hooks, ensuring that linting and formatting rules ar
 ## Redux Toolkit
 
 Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
+
+## React Router
+
+React Router is used for client-side routing. The application includes the following routes:
+- **Home Page**: `/`
+- **Sign In**: `/signin`
+- **Register**: `/register`
+- **Check Currency History**: `/history`
 
 ## Deployment
 
