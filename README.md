@@ -1,4 +1,3 @@
-
 # RateMate Front-End
 
 **RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
@@ -36,8 +35,8 @@ RateMate-front-end/
 │   │   └── Navbar.jsx   # Navigation component
 │   ├── pages/           # Page components for routes
 │   │   ├── HomePage.jsx
-│   │   ├── SignIn.jsx
-│   │   ├── Register.jsx
+│   │   ├── SignInPage.jsx
+│   │   ├── RegisterPage.jsx
 │   │   └── CheckCurrencyHistory.jsx
 │   └── main.jsx         # Main entry point for the React app
 ├── .gitignore           # Files and folders to ignore in git
@@ -58,7 +57,7 @@ The app uses **React Router** to handle client-side routing. The available route
 
 - **Home Page**: `/`
 - **Sign In**: `/signin`
-- **Register**: `/register`
+- **RegisterPage**: `/register`
 - **Check Currency History**: `/history`
 
 ## Getting Started
@@ -122,9 +121,10 @@ Redux Toolkit is used for managing the application's state in a scalable way. Th
 ## React Router
 
 React Router is used for client-side routing. The application includes the following routes:
+
 - **Home Page**: `/`
 - **Sign In**: `/signin`
-- **Register**: `/register`
+- **RegisterPage**: `/register`
 - **Check Currency History**: `/history`
 
 ## Deployment
