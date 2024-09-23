@@ -42,21 +42,23 @@ export const {
   resetConversion,
 } = conversionSlice.actions;
 
-export const convert = (from, to, amount) => async (dispatch) => {
-  try {
-    dispatch(startConversion());
-    const data = await convertCurrency(from, to, amount);
+export const convert =
+  (from, to, amount, date = null) =>
+  async (dispatch) => {
+    try {
+      dispatch(startConversion());
+      const data = await convertCurrency(from, to, amount, date); // Pass date to the service function, we can pass null it is fine I have a check there
 
-    if (data.message === "Unauthorized") {
-      dispatch(conversionFailed("Unauthorized"));
-      return; // Return early to avoid continuing with success flow
+      if (data.message === "Unauthorized") {
+        dispatch(conversionFailed("Unauthorized"));
+        return; // Return early to avoid continuing with success flow
+      }
+
+      dispatch(conversionSuccess(data));
+    } catch (error) {
+      console.log("error slice", error);
+      dispatch(conversionFailed(error.message));
     }
-
-    dispatch(conversionSuccess(data));
-  } catch (error) {
-    console.log("error slice", error);
-    dispatch(conversionFailed(error.message));
-  }
-};
+  };
 
 export default conversionSlice.reducer;
