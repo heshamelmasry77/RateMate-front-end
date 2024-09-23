@@ -2,8 +2,7 @@ import SignUp from "../components/SignUp.jsx";
 
 function RegisterPage() {
   return (
-    <div>
-      <h1>Register</h1>
+    <div className={"container mx-auto py-4"}>
       <SignUp />
     </div>
   );

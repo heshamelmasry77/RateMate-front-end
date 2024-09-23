@@ -28,11 +28,19 @@ const conversionSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetConversion: (state) => {
+      state.convertedAmount = null;
+      state.exchangeRate = null;
+    },
   },
 });
 
-export const { startConversion, conversionSuccess, conversionFailed } =
-  conversionSlice.actions;
+export const {
+  startConversion,
+  conversionSuccess,
+  conversionFailed,
+  resetConversion,
+} = conversionSlice.actions;
 
 export const convert = (from, to, amount) => async (dispatch) => {
   try {
