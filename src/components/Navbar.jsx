@@ -32,7 +32,7 @@ export default function Navbar() {
             <span className="sr-only">RateMate</span>
             <img
               alt="RateMate"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600"
               className="h-8 w-auto"
             />
           </a>
@@ -96,7 +96,7 @@ export default function Navbar() {
               <span className="sr-only">RateMate</span>
               <img
                 alt="RateMate"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                src="https://tailwindui.com/img/logos/mark.svg?color=emerald&shade=600"
                 className="h-8 w-auto"
               />
             </a>
