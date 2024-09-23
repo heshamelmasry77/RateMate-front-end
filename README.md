@@ -1,3 +1,4 @@
+
 # RateMate Front-End
 
 **RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
@@ -59,6 +60,21 @@ RateMate-front-end/
 └── vite.config.js       # Vite configuration
 ```
 
+## Environment Setup
+
+Before running the project, you need to create a `.env` file in the root of the project and add the following environment variables:
+
+```plaintext
+VITE_FIXER_API_KEY=your_fixer_api_key
+VITE_FIXER_API_BASE_URL=https://data.fixer.io/api
+VITE_API_BASE_URL=http://localhost:3000/api/v1
+```
+
+### Fixer.io API Key
+
+- You need to create an account on [Fixer.io](https://fixer.io/) and obtain an API key to use their currency conversion API.
+- Replace `your_fixer_api_key` with the API key you receive from Fixer.io.
+
 ## Routes
 
 The app uses **React Router** to handle client-side routing. The available routes include:
@@ -106,7 +122,11 @@ Make sure you have the following installed:
    npm install
    ```
 
-3. **Run the development server**:
+3. **Create a `.env` file**:
+
+   Add your environment variables in the `.env` file as mentioned above, including your Fixer.io API key.
+
+4. **Run the development server**:
 
    ```bash
    npm run dev
