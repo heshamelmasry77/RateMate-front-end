@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signIn } from "../services/authService";
 import { signInSuccess, authFailed } from "../store/authSlice";
+import { showToast } from "../store/toastSlice";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ function SignIn() {
       const data = await signIn(email, password);
       console.log(data);
       dispatch(signInSuccess(data)); // Assuming the response includes token and user
+      dispatch(showToast("Signed in successfully!"));
     } catch (error) {
       dispatch(authFailed(error.message));
     }

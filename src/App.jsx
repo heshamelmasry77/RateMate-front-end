@@ -6,6 +6,7 @@ import CheckCurrencyHistory from "./pages/CheckCurrencyHistory";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import Toast from "./components/Toast";
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
             }
           />
         </Routes>
+        <Toast />
       </Router>
     </div>
   );
