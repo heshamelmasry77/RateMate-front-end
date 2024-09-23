@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { convert } from "../store/conversionSlice";
+import { convert, resetConversion } from "../store/conversionSlice";
 import { getAvailableCurrencies } from "../services/currencyService";
 import CurrencyDropdown from "./CurrencyDropdown";
 import { signOut } from "../store/authSlice.js";
@@ -11,6 +11,7 @@ const CurrencyConverter = () => {
   const [to, setTo] = useState("EGP");
   const [amount, setAmount] = useState("");
   const [currencies, setCurrencies] = useState([]);
+  const [showResult, setShowResult] = useState(false); // State to control result visibility
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,18 +33,25 @@ const CurrencyConverter = () => {
     fetchCurrencies().then((r) => r);
   }, []);
 
+  // Reset showResult when the amount changes
+  useEffect(() => {
+    setShowResult(false); // Hide result when the amount changes
+  }, [amount]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    dispatch(resetConversion()); // Reset previous result
     dispatch(convert(from, to, amount));
+    setShowResult(true); // Show result after conversion
   };
 
   useEffect(() => {
-    // If the error indicates unauthorized basically the token is expired, redirect to login
+    // If the error indicates unauthorized, redirect to login
     if (error === "Unauthorized") {
       dispatch(signOut());
       navigate("/signin");
     }
-  }, [error, navigate]);
+  }, [error, navigate, dispatch]);
 
   return (
     <div className="currency-converter">
@@ -96,7 +104,8 @@ const CurrencyConverter = () => {
       </form>
 
       {error && <p>Error: {error}</p>}
-      {convertedAmount && (
+
+      {showResult && convertedAmount && (
         <div>
           <p>
             {amount} {from} is equivalent to {convertedAmount} {to}
