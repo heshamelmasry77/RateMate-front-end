@@ -15,8 +15,7 @@ Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 - **Husky** for Git hooks.
 - **Redux Toolkit** for state management.
 - **React Router** for client-side routing.
-- **JWT Authentication** with protected routes.
-- **Authentication** (Sign In and Sign Up) connected to the backend API.
+- **Services Folder** for managing API requests like authentication.
 - Deployed on **Vercel**.
 
 ## Project Structure
@@ -30,17 +29,24 @@ RateMate-front-end/
 ├── src/                 # Source code
 │   ├── assets/
 │   │   └── react.svg    # Sample React logo
-│   ├── App.css          # Application-specific styles
-│   ├── App.jsx          # Root React component
-│   ├── index.css        # Global CSS styles
-│   ├── store/           # Redux store configuration
 │   ├── components/      # Reusable components
-│   │   └── Navbar.jsx   # Navigation component
+│   │   ├── Navbar.jsx   # Navigation component
+│   │   ├── SignIn.jsx   # Sign In form
+│   │   ├── SignUp.jsx   # Sign Up form
+│   │   └── ProtectedRoute.jsx # Protected route component
 │   ├── pages/           # Page components for routes
 │   │   ├── HomePage.jsx
 │   │   ├── SignInPage.jsx
 │   │   ├── RegisterPage.jsx
 │   │   └── CheckCurrencyHistory.jsx
+│   ├── services/        # API call services
+│   │   └── authService.js # Handles sign-in and sign-up authentication services
+│   ├── store/           # Redux store configuration
+│   │   ├── authSlice.js  # Handles auth state management
+│   │   └── store.js      # Redux store configuration
+│   ├── App.css          # Application-specific styles
+│   ├── App.jsx          # Root React component with routing
+│   ├── index.css        # Global CSS styles
 │   └── main.jsx         # Main entry point for the React app
 ├── .gitignore           # Files and folders to ignore in git
 ├── .prettierignore      # Files to ignore for Prettier
@@ -58,20 +64,23 @@ RateMate-front-end/
 
 The app uses **React Router** to handle client-side routing. The available routes include:
 
-- **Home Page**: `/` (Protected)
+- **Home Page**: `/`
 - **Sign In**: `/signin`
-- **Register**: `/register`
-- **Check Currency History**: `/history` (Protected)
+- **RegisterPage**: `/register`
+- **Check Currency History**: `/history`
 
-The **Home Page** and **Check Currency History** routes are protected, requiring the user to be authenticated. If the user is not authenticated, they are redirected to the **Sign In** page.
+Protected routes (accessible only after login):
+- **Home Page**: `/`
+- **Check Currency History**: `/history`
 
-## Authentication
+## Services Folder
 
-The application supports authentication through **JWT (JSON Web Tokens)**. Upon successful sign-in, the JWT is stored in **localStorage** and used for accessing protected routes like the **Home Page** and **Check Currency History**.
+The `src/services` folder handles API interactions, specifically authentication for the RateMate API. It includes two main services:
 
-- **Sign In**: The Sign In form sends the user’s email and password to the backend, and on successful authentication, it stores the JWT token in **localStorage**.
-- **Sign Up**: The Sign Up form allows new users to create an account by sending their username, email, and password to the backend.
-- The authentication state is managed using **Redux Toolkit**.
+- **signIn**: Authenticates the user and retrieves a JWT token.
+- **signUp**: Registers a new user and retrieves a JWT token.
+
+Both services interact with the backend authentication API and handle errors such as invalid credentials or existing user conflicts.
 
 ## Getting Started
 
@@ -129,18 +138,20 @@ Husky is used to manage Git hooks, ensuring that linting and formatting rules ar
 
 ## Redux Toolkit
 
-**Redux Toolkit** is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
-
-The **Auth slice** handles authentication logic, including storing the token, managing user information, and tracking the authentication status.
+Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory and includes an `authSlice` for handling user authentication.
 
 ## React Router
 
 React Router is used for client-side routing. The application includes the following routes:
 
-- **Home Page**: `/` (Protected)
+- **Home Page**: `/`
 - **Sign In**: `/signin`
-- **Register**: `/register`
-- **Check Currency History**: `/history` (Protected)
+- **RegisterPage**: `/register`
+- **Check Currency History**: `/history`
+
+Protected routes:
+- **Home Page**: `/`
+- **Check Currency History**: `/history`
 
 ## Deployment
 
