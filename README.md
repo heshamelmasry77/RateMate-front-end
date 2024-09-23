@@ -1,3 +1,4 @@
+
 # RateMate Front-End
 
 **RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
@@ -14,6 +15,7 @@ Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 - **Husky** for Git hooks.
 - **Redux Toolkit** for state management.
 - **React Router** for client-side routing.
+- **Services Folder** for managing API requests like authentication.
 - Deployed on **Vercel**.
 
 ## Project Structure
@@ -27,17 +29,24 @@ RateMate-front-end/
 ├── src/                 # Source code
 │   ├── assets/
 │   │   └── react.svg    # Sample React logo
-│   ├── App.css          # Application-specific styles
-│   ├── App.jsx          # Root React component
-│   ├── index.css        # Global CSS styles
-│   ├── store/           # Redux store configuration
 │   ├── components/      # Reusable components
-│   │   └── Navbar.jsx   # Navigation component
+│   │   ├── Navbar.jsx   # Navigation component
+│   │   ├── SignIn.jsx   # Sign In form
+│   │   ├── SignUp.jsx   # Sign Up form
+│   │   └── ProtectedRoute.jsx # Protected route component
 │   ├── pages/           # Page components for routes
 │   │   ├── HomePage.jsx
 │   │   ├── SignInPage.jsx
 │   │   ├── RegisterPage.jsx
 │   │   └── CheckCurrencyHistory.jsx
+│   ├── services/        # API call services
+│   │   └── authService.js # Handles sign-in and sign-up authentication services
+│   ├── store/           # Redux store configuration
+│   │   ├── authSlice.js  # Handles auth state management
+│   │   └── store.js      # Redux store configuration
+│   ├── App.css          # Application-specific styles
+│   ├── App.jsx          # Root React component with routing
+│   ├── index.css        # Global CSS styles
 │   └── main.jsx         # Main entry point for the React app
 ├── .gitignore           # Files and folders to ignore in git
 ├── .prettierignore      # Files to ignore for Prettier
@@ -59,6 +68,19 @@ The app uses **React Router** to handle client-side routing. The available route
 - **Sign In**: `/signin`
 - **RegisterPage**: `/register`
 - **Check Currency History**: `/history`
+
+Protected routes (accessible only after login):
+- **Home Page**: `/`
+- **Check Currency History**: `/history`
+
+## Services Folder
+
+The `src/services` folder handles API interactions, specifically authentication for the RateMate API. It includes two main services:
+
+- **signIn**: Authenticates the user and retrieves a JWT token.
+- **signUp**: Registers a new user and retrieves a JWT token.
+
+Both services interact with the backend authentication API and handle errors such as invalid credentials or existing user conflicts.
 
 ## Getting Started
 
@@ -116,7 +138,7 @@ Husky is used to manage Git hooks, ensuring that linting and formatting rules ar
 
 ## Redux Toolkit
 
-Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
+Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory and includes an `authSlice` for handling user authentication.
 
 ## React Router
 
@@ -125,6 +147,10 @@ React Router is used for client-side routing. The application includes the follo
 - **Home Page**: `/`
 - **Sign In**: `/signin`
 - **RegisterPage**: `/register`
+- **Check Currency History**: `/history`
+
+Protected routes:
+- **Home Page**: `/`
 - **Check Currency History**: `/history`
 
 ## Deployment
