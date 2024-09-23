@@ -1,3 +1,4 @@
+
 # RateMate Front-End
 
 **RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
@@ -14,6 +15,8 @@ Live Version: [RateMate Front-End](https://rate-mate-front-end.vercel.app)
 - **Husky** for Git hooks.
 - **Redux Toolkit** for state management.
 - **React Router** for client-side routing.
+- **JWT Authentication** with protected routes.
+- **Authentication** (Sign In and Sign Up) connected to the backend API.
 - Deployed on **Vercel**.
 
 ## Project Structure
@@ -55,10 +58,20 @@ RateMate-front-end/
 
 The app uses **React Router** to handle client-side routing. The available routes include:
 
-- **Home Page**: `/`
+- **Home Page**: `/` (Protected)
 - **Sign In**: `/signin`
-- **RegisterPage**: `/register`
-- **Check Currency History**: `/history`
+- **Register**: `/register`
+- **Check Currency History**: `/history` (Protected)
+
+The **Home Page** and **Check Currency History** routes are protected, requiring the user to be authenticated. If the user is not authenticated, they are redirected to the **Sign In** page.
+
+## Authentication
+
+The application supports authentication through **JWT (JSON Web Tokens)**. Upon successful sign-in, the JWT is stored in **localStorage** and used for accessing protected routes like the **Home Page** and **Check Currency History**.
+
+- **Sign In**: The Sign In form sends the user’s email and password to the backend, and on successful authentication, it stores the JWT token in **localStorage**.
+- **Sign Up**: The Sign Up form allows new users to create an account by sending their username, email, and password to the backend.
+- The authentication state is managed using **Redux Toolkit**.
 
 ## Getting Started
 
@@ -116,16 +129,18 @@ Husky is used to manage Git hooks, ensuring that linting and formatting rules ar
 
 ## Redux Toolkit
 
-Redux Toolkit is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
+**Redux Toolkit** is used for managing the application's state in a scalable way. The store is located in the `src/store` directory.
+
+The **Auth slice** handles authentication logic, including storing the token, managing user information, and tracking the authentication status.
 
 ## React Router
 
 React Router is used for client-side routing. The application includes the following routes:
 
-- **Home Page**: `/`
+- **Home Page**: `/` (Protected)
 - **Sign In**: `/signin`
-- **RegisterPage**: `/register`
-- **Check Currency History**: `/history`
+- **Register**: `/register`
+- **Check Currency History**: `/history` (Protected)
 
 ## Deployment
 
