@@ -17,9 +17,16 @@ function SignIn() {
       const data = await signIn(email, password);
       console.log(data);
       dispatch(signInSuccess(data)); // Assuming the response includes token and user
-      dispatch(showToast("Signed in successfully!"));
+      dispatch(
+        showToast({
+          message: "Signed in successfully!",
+          bgColor: "bg-green-500",
+        })
+      );
     } catch (error) {
+      console.log("error", error);
       dispatch(authFailed(error.message));
+      dispatch(showToast({ message: error.message, bgColor: "bg-red-500" }));
     }
   };
 

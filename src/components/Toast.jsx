@@ -4,7 +4,7 @@ import { hideToast } from "../store/toastSlice";
 
 const Toast = () => {
   const dispatch = useDispatch();
-  const { message, isVisible } = useSelector((state) => state.toast);
+  const { message, isVisible, bgColor } = useSelector((state) => state.toast);
 
   useEffect(() => {
     if (isVisible) {
@@ -19,7 +19,7 @@ const Toast = () => {
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
-      <div className="rounded-md bg-green-500 px-4 py-2 text-white shadow-lg">
+      <div className={`rounded-md px-4 py-2 text-white shadow-lg ${bgColor}`}>
         {message}
       </div>
     </div>
