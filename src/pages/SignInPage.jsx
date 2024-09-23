@@ -1,7 +1,7 @@
 import SignIn from "../components/SignIn.jsx";
 function SignInPage() {
   return (
-    <div>
+    <div className={"container mx-auto py-4"}>
       <h1>Sign In</h1>
       <SignIn />
     </div>

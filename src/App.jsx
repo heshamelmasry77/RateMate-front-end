@@ -9,7 +9,7 @@ import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 function App() {
   return (
-    <div className={"container mx-auto"}>
+    <div>
       <Router>
         <Navbar />
         <Routes>
