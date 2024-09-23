@@ -5,6 +5,7 @@ import RegisterPage from "./pages/RegisterPage";
 import CheckCurrencyHistory from "./pages/CheckCurrencyHistory";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 function App() {
   return (
@@ -20,8 +21,14 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/signin" element={<SignInPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route
+            path="/signin"
+            element={<UnauthenticatedRoute element={<SignInPage />} />}
+          />
+          <Route
+            path="/register"
+            element={<UnauthenticatedRoute element={<RegisterPage />} />}
+          />
           <Route
             path="/history"
             element={
