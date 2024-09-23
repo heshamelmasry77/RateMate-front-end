@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { convert } from "../store/conversionSlice";
 import { getAvailableCurrencies } from "../services/currencyService";
 import CurrencyDropdown from "./CurrencyDropdown";
+import { signOut } from "../store/authSlice.js";
 
 const CurrencyConverter = () => {
   const [from, setFrom] = useState("USD");
@@ -11,6 +13,7 @@ const CurrencyConverter = () => {
   const [currencies, setCurrencies] = useState([]);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { convertedAmount, exchangeRate, loading, error } = useSelector(
     (state) => state.conversion
   );
@@ -33,6 +36,14 @@ const CurrencyConverter = () => {
     e.preventDefault();
     dispatch(convert(from, to, amount));
   };
+
+  useEffect(() => {
+    // If the error indicates unauthorized basically the token is expired, redirect to login
+    if (error === "Unauthorized") {
+      dispatch(signOut());
+      navigate("/signin");
+    }
+  }, [error, navigate]);
 
   return (
     <div className="currency-converter">

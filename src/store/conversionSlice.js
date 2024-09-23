@@ -38,8 +38,15 @@ export const convert = (from, to, amount) => async (dispatch) => {
   try {
     dispatch(startConversion());
     const data = await convertCurrency(from, to, amount);
+
+    if (data.message === "Unauthorized") {
+      dispatch(conversionFailed("Unauthorized"));
+      return; // Return early to avoid continuing with success flow
+    }
+
     dispatch(conversionSuccess(data));
   } catch (error) {
+    console.log("error slice", error);
     dispatch(conversionFailed(error.message));
   }
 };
