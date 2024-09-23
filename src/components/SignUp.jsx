@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signUp } from "../services/authService";
 import { signUpSuccess, authFailed } from "../store/authSlice";
+import { showToast } from "../store/toastSlice";
 
 function SignUp() {
   const [username, setUsername] = useState("");
@@ -14,8 +15,19 @@ function SignUp() {
     try {
       const data = await signUp(username, email, password);
       dispatch(signUpSuccess(data));
+      dispatch(
+        showToast({
+          message: "Signed up successfully!",
+          bgColor: "bg-green-500",
+        })
+      );
     } catch (error) {
       dispatch(authFailed(error.message));
+      dispatch(showToast({ message: error.message, bgColor: "bg-red-500" }));
+      // Reset values
+      setEmail("");
+      setPassword("");
+      setUsername("");
     }
   };
 
