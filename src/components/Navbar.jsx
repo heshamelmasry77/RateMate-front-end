@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../store/authSlice";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -11,6 +13,14 @@ const navigation = [
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth); // Checking authentication state
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+    navigate("/signin"); // Redirect to sign in after logging out
+  };
 
   return (
     <header className="sticky top-0 bg-white">
@@ -50,12 +60,21 @@ export default function Navbar() {
           ))}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/signin"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+          {isAuthenticated ? (
+            <button
+              onClick={handleSignOut}
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Sign out <span aria-hidden="true">&rarr;</span>
+            </button>
+          ) : (
+            <Link
+              to="/signin"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
         </div>
       </nav>
       <Dialog
@@ -91,20 +110,29 @@ export default function Navbar() {
                     key={item.name}
                     to={item.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                    onClick={() => setMobileMenuOpen(false)} // Close mobile menu on click
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  to="/signin"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)} // Close mobile menu on click
-                >
-                  Log in
-                </Link>
+                {isAuthenticated ? (
+                  <button
+                    onClick={handleSignOut}
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Sign out
+                  </button>
+                ) : (
+                  <Link
+                    to="/signin"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Log in
+                  </Link>
+                )}
               </div>
             </div>
           </div>
