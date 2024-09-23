@@ -7,7 +7,6 @@ import { signOut } from "../store/authSlice";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Register", href: "/register" },
   { name: "Check History", href: "/history" },
 ];
 
@@ -58,6 +57,14 @@ export default function Navbar() {
               {item.name}
             </Link>
           ))}
+          {!isAuthenticated && (
+            <Link
+              to="/register"
+              className="text-sm font-semibold leading-6 text-gray-900"
+            >
+              Register
+            </Link>
+          )}
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           {isAuthenticated ? (
@@ -115,6 +122,15 @@ export default function Navbar() {
                     {item.name}
                   </Link>
                 ))}
+                {!isAuthenticated && (
+                  <Link
+                    to="/register"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Register
+                  </Link>
+                )}
               </div>
               <div className="py-6">
                 {isAuthenticated ? (
