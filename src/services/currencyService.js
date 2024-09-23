@@ -17,18 +17,25 @@ export const getAvailableCurrencies = async () => {
 };
 
 // Function to convert currency
-export const convertCurrency = async (from, to, amount) => {
+export const convertCurrency = async (from, to, amount, date = null) => {
+  const requestBody = {
+    from: from.toUpperCase(),
+    to: to.toUpperCase(),
+    amount,
+  };
+
+  // Add date if provided
+  if (date) {
+    requestBody.date = date;
+  }
+
   const response = await fetch(`${API_BASE_URL}/convert`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
-    body: JSON.stringify({
-      from: from.toUpperCase(),
-      to: to.toUpperCase(),
-      amount,
-    }),
+    body: JSON.stringify(requestBody),
   });
 
   const data = await response.json();

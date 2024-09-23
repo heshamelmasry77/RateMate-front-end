@@ -5,11 +5,13 @@ import { convert, resetConversion } from "../store/conversionSlice";
 import { getAvailableCurrencies } from "../services/currencyService";
 import CurrencyDropdown from "./CurrencyDropdown";
 import { signOut } from "../store/authSlice.js";
+import DatePicker from "./DatePicker.jsx";
 
 const CurrencyConverter = () => {
   const [from, setFrom] = useState("USD");
   const [to, setTo] = useState("EGP");
   const [amount, setAmount] = useState("");
+  const [selectedDate, setSelectedDate] = useState(""); // State for selected date
   const [currencies, setCurrencies] = useState([]);
   const [showResult, setShowResult] = useState(false); // State to control result visibility
 
@@ -41,12 +43,13 @@ const CurrencyConverter = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(resetConversion()); // Reset previous result
-    dispatch(convert(from, to, amount));
+    console.log("selectedDate: ", selectedDate);
+    dispatch(convert(from, to, amount, selectedDate)); // Pass the selectedDate to the convert action
     setShowResult(true); // Show result after conversion
   };
 
   useEffect(() => {
-    // If the error indicates unauthorized, redirect to login
+    // If the error indicates unauthorized, redirect to log in
     if (error === "Unauthorized") {
       dispatch(signOut());
       navigate("/signin");
@@ -104,6 +107,20 @@ const CurrencyConverter = () => {
               onChange={(e) => setAmount(e.target.value)}
               required
               className="block w-full rounded-md border border-gray-300 px-3 py-2 shadow-sm focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600 sm:text-sm"
+            />
+          </div>
+        </div>
+        <div className="relative w-full">
+          <label
+            htmlFor="date"
+            className="mb-2 block text-lg font-medium text-gray-700"
+          >
+            Date (Optional):
+          </label>
+          <div className="mt-2">
+            <DatePicker
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate} // Pass the setSelectedDate function to update the date
             />
           </div>
         </div>
