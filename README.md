@@ -1,4 +1,3 @@
-
 # RateMate Front-End
 
 **RateMate Front-End** is a front-end application built using **React.js**, **Vite**, **Tailwind CSS**, **Prettier**, **ESLint**, **Husky**, **Redux Toolkit**, and **React Router**. It is the user interface for interacting with the RateMate API, providing a seamless experience for currency conversions. The app is deployed on **Vercel** and can be accessed live.
@@ -70,6 +69,7 @@ The app uses **React Router** to handle client-side routing. The available route
 - **Check Currency History**: `/history`
 
 Protected routes (accessible only after login):
+
 - **Home Page**: `/`
 - **Check Currency History**: `/history`
 
@@ -150,6 +150,7 @@ React Router is used for client-side routing. The application includes the follo
 - **Check Currency History**: `/history`
 
 Protected routes:
+
 - **Home Page**: `/`
 - **Check Currency History**: `/history`
 
